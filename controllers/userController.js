@@ -42,6 +42,16 @@ module.exports = {
         .then((user) =>
           !user
             ? res.status(404).json({ message: 'No such user exists.' })
+            // Remove associated thoughts with user
+            : Thought.findOneAndUpdate(
+              { users: req.params.userId },
+              { $pull: { users: req.params.userId } },
+              { new: true },
+            )
+        )
+            .then((thought)=>
+            !thought
+            ? res.status(404).json({ message: "No thought with that ID" })
             : res.json({ message: 'User successfully deleted' })
         )
         .catch((err) => {
