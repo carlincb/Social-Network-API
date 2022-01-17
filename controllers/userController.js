@@ -33,7 +33,7 @@ module.exports = {
     // create a new user
     createUser(req, res) {
       User.create(req.body)
-        .then((user) => res.json(this.getSingleUser))
+        .then(user => res.json(this.getSingleUser))
         .catch((err) => res.status(500).json(err));
     },
     // Delete a user and remove them from the course
