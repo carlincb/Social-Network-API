@@ -4,6 +4,7 @@ module.exports = {
     // Get all users
     getUsers(req, res) {
       User.find()
+      .select('-__v')
         .then(async (users) => {
           return res.json(users);
         })
@@ -104,7 +105,7 @@ module.exports = {
     removeFriend(req, res) {
       User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $pull: { friends: { friendId: req.params.friendId } } },
+        { $pull: { friends: req.params.friendId } },
         { new: true }
       )
         .then((user) =>

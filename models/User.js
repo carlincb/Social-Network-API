@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create User model
 const userSchema = new Schema(
   {
     username: {
@@ -13,16 +12,20 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, 'Error: Not a valid email address.']
+      match: [/.+@.+\..+/, 'Must match an email address!'],
     },
-    thoughts: [{
+    thoughts: [
+      {
         type: Schema.Types.ObjectId,
         ref: 'Thought',
-    }],
-    friends: [{
+      },
+    ],
+    friends: [
+      {
         type: Schema.Types.ObjectId,
         ref: 'User',
-    }],
+      },
+    ],
   },
   {
     toJSON: {
@@ -32,7 +35,9 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual('friendCount').get(()=> this.friends.length);
+userSchema.virtual('friendCount').get(function () {
+  return this.friends.length;
+});
 
 const User = model('User', userSchema);
 

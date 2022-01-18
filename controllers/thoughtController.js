@@ -3,9 +3,13 @@ const { Thought, User } = require("../models");
 module.exports = {
   // Get all thoughts
   getThoughts(req, res) {
+    console.log('Where are my thoughts?')
     Thought.find()
+    .sort({createdAt: 'descending'})
       .then((thoughts) => res.json(thoughts))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        console.log(err)
+        res.status(500).json(err)});
   },
   // Get a thought
   getSingleThought(req, res) {
@@ -96,7 +100,7 @@ module.exports = {
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { $pull: { reactions: req.params.reactionId } },
       { new: true }
     )
       .then((thought) =>
