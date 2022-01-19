@@ -31,7 +31,7 @@ module.exports = {
           return res.status(500).json(err);
         });
     },
-    // create a new user
+    // Create a new user
     createUser(req, res) {
       User.create(req.body)
         .then(user => res.json(this.getSingleUser))
@@ -47,7 +47,7 @@ module.exports = {
             : Thought.findOneAndUpdate(
               { users: req.params.userId },
               { $pull: { users: req.params.userId } },
-              { new: true },
+              { new: true},
             )
         )
             .then((thought)=>

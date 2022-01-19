@@ -3,7 +3,6 @@ const { Thought, User } = require("../models");
 module.exports = {
   // Get all thoughts
   getThoughts(req, res) {
-    console.log('Where are my thoughts?')
     Thought.find()
     .sort({createdAt: 'descending'})
       .then((thoughts) => res.json(thoughts))
