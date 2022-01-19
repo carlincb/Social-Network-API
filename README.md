@@ -50,7 +50,7 @@ git clone git@github.com:carlincb/Social-Network-API.git
 
 - Create a `.gitignore` file and include `node_modules/` and `.DS_Store`, so that these directories are not tracked or uploaded to GitHub. Be sure to create your `.gitignore` file before installing any npm dependencies.
 
-- Your application should use [Express.js](https://www.npmjs.com/package/express) for routing,  [MongoDB](https://www.mongodb.com/) as the database, and [Mongoose](https://www.npmjs.com/package/mongoose) packages. You should have MongoDB installed on your computer. Please follow the [MongoDB Installation Guide](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb) to install MongoDB locally. Express and Mongoose are included as dependencies and should be installed by running the following command in the current working directory for this application:
+- Your application should use [Express.js](https://www.npmjs.com/package/express) for routing, [MongoDB](https://www.mongodb.com/) as the database, and [Mongoose](https://www.npmjs.com/package/mongoose) packages. You should have MongoDB installed on your computer. Please follow the [MongoDB Installation Guide](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb) to install MongoDB locally. Express and Mongoose are included as dependencies and should be installed by running the following command in the current working directory for this application:
 
 ```
 npm install
@@ -61,6 +61,7 @@ npm install
 ```
 npm run start
 ```
+
 - or:
 
 ```
@@ -81,14 +82,14 @@ Please see below for examples of this application's usage.
 
 ### Video of Usage:
 
-- 
+- https://watch.screencastify.com/v/W5fni5cDLzIEZq7g2NLO
 
 ## Credits
 
 - https://www.youtube.com/watch?v=ofme2o29ngU
 - https://www.youtube.com/watch?v=DZBGEVgL2eE
 - https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide
-- https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mo 
+- https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mo
 
 ## License
 
