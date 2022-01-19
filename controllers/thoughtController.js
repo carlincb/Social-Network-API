@@ -4,11 +4,12 @@ module.exports = {
   // Get all thoughts
   getThoughts(req, res) {
     Thought.find()
-    .sort({createdAt: 'descending'})
+      .sort({ createdAt: "descending" })
       .then((thoughts) => res.json(thoughts))
       .catch((err) => {
-        console.log(err)
-        res.status(500).json(err)});
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
   // Get a thought
   getSingleThought(req, res) {
@@ -77,36 +78,30 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-    //   Add a reaction to a thought
+  //   Add a reaction to a thought
   addReaction(req, res) {
-    console.log('You are adding a reaction');
-    console.log(req.body);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { reactions: req.params.reactionId } },
-      { new: true }
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
     )
       .then((thought) =>
         !thought
-          ? res
-              .status(404)
-              .json({ message: 'No thought found with that ID :(' })
+          ? res.status(404).json({ message: "No thought found with that ID." })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
-    //   Remove reaction from thought
+  //   Remove reaction from thought
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: req.params.reactionId } },
-      { new: true }
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { runValidators: true, new: true }
     )
       .then((thought) =>
         !thought
-          ? res
-              .status(404)
-              .json({ message: 'No thought found with that ID :(' })
+          ? res.status(404).json({ message: "No thought found with that ID." })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));

@@ -44,12 +44,7 @@ module.exports = {
           !user
             ? res.status(404).json({ message: 'No such user exists.' })
             // Remove associated thoughts with user
-            : Thought.findOneAndUpdate(
-              { users: req.params.userId },
-              { $pull: { users: req.params.userId } },
-              { new: true},
-            )
-        )
+            : Thought.deleteMany({ userId: req.params.userId })
             .then((thought)=>
             !thought
             ? res.status(404).json({ message: "No thought with that ID" })
@@ -58,7 +53,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
           res.status(500).json(err);
-        });
+        }));
     },
     
     updateUser(req, res) {
